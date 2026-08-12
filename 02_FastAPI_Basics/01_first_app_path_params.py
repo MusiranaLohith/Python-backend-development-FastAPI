@@ -34,9 +34,18 @@ def get_user(user_id:int):
     }
 
 @app.get("/products/{product_id}")
-def get_product_id(product_id):
+def get_product_id(product_id:int):
     return{
-        "product_id" : product_id
+        "product_id" : product_id,
+        "product_name" : "Laptop"
+    }
+
+@app.get("/products/{product_id}/{quantity}")
+def product_details(product_id:int, quantity:int):
+    return{
+        "product_id" : product_id,
+        "quantity" : quantity,
+        "total_quantity" : product_id * quantity
     }
 
 @app.get("/students/{student_id}/courses/{course_id}")
@@ -67,3 +76,11 @@ def get_name_id(student_id:int):
         return{
             "message" : "Student Not FOund"
         }
+
+@app.get("/users/{user_id}/orders/{order_id}")
+def order_details(user_id:int, order_id:int):
+    return{
+        "user_id" : user_id,
+        "order_id" : order_id,
+        "message" : f"Order belongs to user {user_id}"
+    }
